@@ -10,6 +10,7 @@ import { clearHome } from "../features/homeSlice";
 import { fetchHome } from "../features/homeSlice";
 import { fetchDetail } from "../features/detailSlice";
 import { useNavigate } from "react-router-dom";
+import Loading from "../util/Loading";
 
 const Home = () => {
   const dispatch = useDispatch(); //dispatch execute the reducers
@@ -42,10 +43,9 @@ const Home = () => {
     dispatch(fetchHome());
   }, []);
 
-  useEffect(() => {
-    console.log(trendingAnimes);
-    console.log(mostPopularAnimes);
-  }, [trendingAnimes]);
+  if(isLoading) {
+    return <Loading />
+  }
 
   return (
     <>
@@ -60,8 +60,7 @@ const Home = () => {
         mostPopularAnimes={mostPopularAnimes}
         mostFavoriteAnimes={mostFavoriteAnimes}
         latestCompletedAnimes={latestCompletedAnimes}
-        getDetailAnime={getDetailAnime}
-      />
+        getDetailAnime={getDetailAnime}/>
     </main>
     </>
   );

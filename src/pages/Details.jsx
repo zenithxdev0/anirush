@@ -6,10 +6,8 @@ import { fetchDetail } from "../features/detailSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import HeroDetails from '../components/HeroDetails';
 import { fetchEpisodes } from '../features/watchSlice';
-
-
+import Loading from '../util/Loading'
 import Button from '../util/Button';
-
 
 const Details = () => {
 
@@ -17,11 +15,10 @@ const Details = () => {
   const dispatch = useDispatch(); 
   const navigate = useNavigate();
 
-  const { info, moreInfo } = useSelector((state) => state.detail);
+  const { loading, info, moreInfo } = useSelector((state) => state.detail);
   const { episodes } = useSelector((state) => state.episode);
   
-
-  const getWatch = (animeId) => {
+  const getWatch = () => {
     navigate(`/watch/${episodes[0].episodeId}`);
   }
 
@@ -32,13 +29,21 @@ const Details = () => {
     }
   }, [animeId, dispatch]);
 
+  if(loading) {
+    return <Loading/>
+  }
+
   return (
     <>
     <NavBar />
-    <article className='bg-zinc-900'>
+    {info &&     <article className='bg-zinc-900 p-2'>
         <HeroDetails info={info} moreInfo={moreInfo} getWatch={getWatch}/>
-      
-    </article>
+        <div>
+          <h1 className='text-white text-4xl font-bold'>Seasons</h1>
+          <div></div>
+        </div>
+    </article>}
+
     </>
   )
 }

@@ -31,17 +31,24 @@ const watchService = {
         }
     },
 
-    getVideoSources: async (episodeId, server, category) => {
-        try {
-            const proxy = `https://gogoanime-and-hianime-proxy.vercel.app/m3u8-proxy?url=`
-            const response = await axios.get(`${API_URL}/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}?server=${server}&category=${category}`);
-            return response.data.data
+getVideoSources: async (episodeId, server, category) => {
+    try {
+        const proxy = `http://localhost:8080/`;
 
-        } catch (error) {
-            console.log(error);
-            throw error;
-        }
+        const organicPath = `http://localhost:4000/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}&server=${server}&category=${category}`
+        const originalPath = `/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}&server=${server}&category=${category}`;
+        const fullUrl = `${proxy}${originalPath}`;
+
+        const response = await axios.get(organicPath);
+       // console.log(fullUrl);
+        console.log(response);
+
+        return response.data.data;
+    } catch (error) {
+        throw error;
     }
+}
+
 }
 
 export default watchService;

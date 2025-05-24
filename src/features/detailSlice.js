@@ -39,7 +39,7 @@ const detailSlice = createSlice({
                 state.info = action.payload.data.anime.info;
                 state.moreInfo = action.payload.data.anime.moreInfo
                 state.seasons = action.payload.data.seasons
-
+                
                 state.mostPopularAnimes = action.payload.data.mostPopularAnimes
                 state.recommendedAnimes = action.payload.data.recommendedAnimes
                 state.relatedAnimes = action.payload.data.relatedAnimes

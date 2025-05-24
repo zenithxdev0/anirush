@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-const HlsPlayer = ({ src, key }) => {
+const HlsPlayer = ({ src, key, tracks }) => {
+
   const videoRef = useRef();
 
   useEffect(() => {
@@ -26,15 +27,26 @@ const HlsPlayer = ({ src, key }) => {
   }, [src]);
 
   return (
-    <video
-      key={key} // important for forcing re-render
-      ref={videoRef}
-      controls
-      autoPlay
-      className="h-auto"
-      crossOrigin="anonymous"
-      
-    />
+<video
+  key={key}
+  ref={videoRef}
+  controls
+  autoPlay
+  className="h-auto"
+  crossOrigin="anonymous"
+>
+  {tracks.map((track, index) =>
+    track.kind === 'captions' ? (
+      <track
+        key={index}
+        label={track.label}
+        kind={track.kind}
+        src={track.file}
+        default={track.default || false}
+      />
+    ) : null
+  )}
+</video>
   );
 };
 

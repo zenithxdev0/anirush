@@ -3,11 +3,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import homeReducer from '../features/homeSlice';
 import detailReducer from '../features/detailSlice';
 import episodeReducer from '../features/watchSlice'
+import { serverReducer, sourceReducer }  from '../features/watchSlice';
+
 
 export const store = configureStore({
   reducer: {
     home: homeReducer,
     detail: detailReducer,
-    episode: episodeReducer
+    episode: episodeReducer,
+    server: serverReducer,
+    source: sourceReducer
   },
 });

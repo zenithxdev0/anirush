@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import Button from "../util/Button";
+import { useNavigate } from "react-router-dom";
 
 
 const Hero = ({ data, day, week, month, getDetailAnime }) => {
+
+  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("today");
 
@@ -28,7 +32,7 @@ const Hero = ({ data, day, week, month, getDetailAnime }) => {
 
   return (
     
-      <section className="flex p-4 gap-4 h-[40rem]">
+      <section className="flex gap-4 h-[40rem]">
       <div className="relative grow-1 overflow-hidden rounded-lg ">
         {/* Slides */}
         {data.map((anime, index) => (
@@ -50,7 +54,6 @@ const Hero = ({ data, day, week, month, getDetailAnime }) => {
               <Button color={'rose'} onClick={() => getDetailAnime(anime.id)}>Details</Button>
             </div>
           </div>
-
         </div>
         ))}
 

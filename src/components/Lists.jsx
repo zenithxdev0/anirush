@@ -1,3 +1,4 @@
+import Stat from "../util/Stat";
 
 const Lists = ({ title, data, getDetailAnime }) => {
   return (
@@ -20,8 +21,9 @@ const Lists = ({ title, data, getDetailAnime }) => {
             <div>
              
               <p className="text-sm font-medium text-white">{anime.name}</p>
-              <small className="mr-2 bg-green-200 rounded px-1 py-0.5 font-semibold">{anime.episodes.sub}</small>
-              {anime.episodes.dub && <small className="mr-2 bg-pink-200 rounded px-1 py-0.5 font-semibold">{anime.episodes.dub}</small>}
+              {anime.episodes.sub && <Stat type={'sub'}>{anime.episodes.sub}</Stat>}
+              <span> </span>
+              {anime.episodes.dub && <Stat type={'dub'}>{anime.episodes.dub}</Stat>}
               <small className="text-white mx-1">•</small>
               <small className="text-white font-semibold">{anime.type}</small>
             </div>
@@ -30,7 +32,6 @@ const Lists = ({ title, data, getDetailAnime }) => {
         ))}
       </div>
       <button className="text-white hover:text-amber-200 duration-300 transition ease-in-out cursor-pointer">View more</button>
-
     </div>
   );
 };

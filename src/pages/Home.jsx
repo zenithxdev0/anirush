@@ -12,6 +12,9 @@ import { fetchDetail } from "../features/detailSlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../util/Loading";
 
+import Container from "../util/Container";
+import List from "../util/List";
+
 const Home = () => {
   const dispatch = useDispatch(); //dispatch execute the reducers
   const navigate = useNavigate();
@@ -28,15 +31,15 @@ const Home = () => {
     top10Week,
     top10Month,
 
+    latestEpisodeAnimes,
+    topUpcomingAnimes,
+
     loading: isLoading,
     error,
   } = useSelector((state) => state.home);
 
   const getDetailAnime = (animeId) => {
-    // dispatch(fetchDetail(animeId));
-    console.log(animeId);
-    navigate(`/anime/${animeId}`);
-    
+    navigate(`/anime/${animeId}`); 
   };
 
   useEffect(() => {
@@ -48,9 +51,9 @@ const Home = () => {
   }
 
   return (
-    <>
+    <Container>
     <NavBar />
-    <main className="bg-zinc-900">
+    <main className="">
       <Hero data={spotlightAnimes} day={top10Today} week={top10Week} month={top10Month} getDetailAnime={getDetailAnime}/>
       <Trending error={error} isLoading={isLoading} data={trendingAnimes} getDetailAnime={getDetailAnime}/>
       <TopLists 
@@ -61,8 +64,11 @@ const Home = () => {
         mostFavoriteAnimes={mostFavoriteAnimes}
         latestCompletedAnimes={latestCompletedAnimes}
         getDetailAnime={getDetailAnime}/>
+      <List label={'Latest Episode'} data={latestEpisodeAnimes} onClick={getDetailAnime}/>
+      <List label={'Top Upcoming Animes'} data={topUpcomingAnimes} onClick={getDetailAnime}/>
+
     </main>
-    </>
+    </Container>
   );
 };
 

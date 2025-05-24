@@ -21,6 +21,9 @@ const homeSlice = createSlice({
     mostPopularAnimes: [],
     mostFavoriteAnimes: [],
     latestCompletedAnimes: [],
+    
+    latestEpisodeAnimes: [],
+    topUpcomingAnimes: [],
 
     top10Today: [],
     top10Week: [],
@@ -69,6 +72,9 @@ const homeSlice = createSlice({
         state.mostPopularAnimes = action.payload.mostPopularAnimes.slice(0, 5);
         state.mostFavoriteAnimes = action.payload.mostFavoriteAnimes.slice(0, 5);
         state.latestCompletedAnimes = action.payload.latestCompletedAnimes.slice(0, 5);
+
+        state.latestEpisodeAnimes = action.payload.latestEpisodeAnimes;
+        state.topUpcomingAnimes = action.payload.topUpcomingAnimes;
 
         state.top10Today = action.payload.top10Animes.today;
         state.top10Week = action.payload.top10Animes.week;

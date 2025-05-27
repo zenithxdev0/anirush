@@ -35,7 +35,7 @@ const episodeSlice = createSlice({
         
                 state.episodes = action.payload.episodes;
                 state.totalEpisodes = action.payload.totalEpisodes;
-                //console.log(action);
+                console.log(action.payload.episodes);
 
             })
             .addCase(fetchEpisodes.rejected, (state, action) => {

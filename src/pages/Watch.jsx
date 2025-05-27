@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { data, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 
 import {
   fetchEpisodes,
@@ -8,11 +9,18 @@ import {
   fetchSource,
 } from "../features/watchSlice";
 
+import { fetchDetail } from "../features/detailSlice";
+
 import watchService from "../services/watchService";
 import HlsPlayer from "../components/HlsPlayer";
 import Container from "../util/Container";
 import NavBar from "../components/NavBar";
 import Loading from "../util/Loading";
+import Episodes from "../util/Episodes";
+import Aside from "../components/Aside";
+import Trending from "../components/Trending";
+import List from "../util/List";
+import Footer from "../components/Footer";
 
 const Watch = () => {
   const dispatch = useDispatch();
@@ -20,8 +28,21 @@ const Watch = () => {
 
   const streamProxy =
     "https://gogoanime-and-hianime-proxy-puce-seven.vercel.app/m3u8-proxy?url="; //https://eb.netmagcdn.com:2228/hls-playback/61104e0fbf60f7c0bec92309d55517cdaacaf8be60878a81e5d07e832c765f456d52b7c134bdf4481a54d2e77642d2da3c6d95300f1d03a920d6619897aa06fb1043eab001276ebfcabda3b563f913afe8224641b4605575ddcbc91c0f1da77495bc254d94bd846ae69e1aed5a2383edd74da19492310fab7dc318a5a927a45f84baf9df9aa883db08e498a3bbfcd248/master.m3u8
+  const gridLayout =
+    "grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2";
 
   const { serverInfo } = useSelector((state) => state.server);
+
+  const {
+    loading: loadingDetail,
+    info,
+    moreInfo,
+    seasons,
+    relatedAnimes,
+    recommendedAnimes,
+    mostPopularAnimes,
+  } = useSelector((state) => state.detail);
+
   const {
     source,
     track,
@@ -100,6 +121,8 @@ const Watch = () => {
         category: category,
       })
     );
+
+    dispatch(fetchDetail(animeId));
   }, [animeId, ep, server, category]);
 
   if (loading) {
@@ -117,45 +140,39 @@ const Watch = () => {
   // const sampleUrl = `https://ed.netmagcdn.com:2228/hls-playback/d8e56d406f04d29b74b4e03042fca324d71f0cd196c65f1fcb9c6d27377df7bd17b6ce13536ee8f21bbfe92902b58f635418d122f1cafb9ae0c0d764487716f0e63a4bd7408c5ea4514f3241450918d5ff9be6b1199f09edad870678e418383b633285ce874d6dea8012a9fba9e9ac39cf3e46b931039fc69fa7dcea183ddbb51d809dd3df1ea6613cc3b93a9e9fd164/master.m3u8`;
 
   return (
-    <Container>
+    <>
+        <Container>
       <NavBar />
-      <div className="flex gap-4 h-96">
-        <div className="w-full max-w-64 bg-neutral-800 p-2 rounded-md overflow-hidden">
-          <p className="text-white font-semibold text-xl mb-4">Episode List</p>
-          <ul className="block space-y-2 overflow-y-auto h-full custom-scrollbar">
-            {episodes.map((episode) => (
-              <li
-                onClick={() => getWatch(episode.episodeId)}
-                className="text-white p-2 bg-neutral-700 hover:bg-neutral-800 cursor-pointer text-xs font-semibold rounded-md text-nowrap truncate"
-                key={episode.id}
-              >
-                {episode.number}. {episode.title || "Untitled"}
-              </li>
-            ))}
-          </ul>
-        </div>
 
-        {sourceLoading ? (
-          <Loading />
-        ) : sourceError ? (
-          <p>error video</p>
-        ) : (
-          <>
-            <div className="flex flex-col h-full">
+      {sourceLoading ? (
+        <Loading />
+      ) : sourceError ? (
+        <p>error video</p>
+      ) : (
+        <>
+          <div className="flex gap-2 items-start">
+            {/* <Episodes
+              episodes={episodes}
+              totalEpisodes={totalEpisodes}
+              className={
+                "max-w-72 w-full grid place-content-evenly grid-cols-6 gap-1"
+              }
+            /> */}
+            <div className="">
+              {/**video */}
               {source?.length > 0 && track.length > 0 ? (
                 <>
-                  <div className="w-96">
-                    <HlsPlayer
-                      src={`${streamProxy}${source[0].url}`}
-                      tracks={track}
-                      key={"1"}
-                    />
-                  </div>
+                  <HlsPlayer
+                    src={`${streamProxy}${source[0].url}`}
+                    tracks={track}
+                    key={"1"}
+                    videoSize={`max-w-[120rem] w-full bg-neutral-700 aspect-video`}
+                  />
 
-                  <div className="space-y-2 bg-neutral-800 p-4">
+                  <div className="space-y-2 bg-neutral-800 p-4 mb-2">
                     {serverInfo?.sub?.length > 0 && (
                       <div className="flex items-center gap-4">
-                        <p>Sub</p>
+                        <p className="text-amber-200 font-semibold">Sub</p>
                         <ul className="flex gap-2">
                           {serverInfo.sub.map((sub, idx) => (
                             <li
@@ -178,7 +195,7 @@ const Watch = () => {
 
                     {serverInfo?.dub?.length > 0 && (
                       <div className="flex gap-4 items-center">
-                        <p>Dub</p>
+                        <p className="text-amber-200 font-semibold">Dub</p>
                         <ul className="flex gap-2">
                           {serverInfo.dub.map((dub, idx) => (
                             <li
@@ -195,19 +212,37 @@ const Watch = () => {
                       </div>
                     )}
                   </div>
+
+                  <Episodes
+                    episodes={episodes}
+                    totalEpisodes={totalEpisodes}
+                    className={`grid grid-cols-25 text-center gap-2 place-items-center`}
+                    episodeId={`${animeId}?ep=${ep}`}
+                  />
                 </>
               ) : (
                 <p className="text-red-500">No stream available.</p>
               )}
             </div>
-          </>
-        )}
 
-        <div className="w-96 bg-neutral-600 p-4 rounded-md">
-          another content here
-        </div>
-      </div>
-    </Container>
+            <Trending
+              data={relatedAnimes.slice(0, 10)}
+              label={"Related Animes"}
+              className={
+                "bg-neutral-800 p-2 rounded-sm max-w-80 w-full lg:block hidden"
+              }
+            />
+          </div>
+          <List
+            label={"Recommended Anime"}
+            data={recommendedAnimes}
+            gridLayout={gridLayout}
+          />
+        </>
+      )}
+    </Container>\
+    <Footer />
+    </>
   );
 };
 

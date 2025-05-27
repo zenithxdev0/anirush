@@ -3,7 +3,7 @@ import Stat from "../util/Stat";
 const Lists = ({ title, data, getDetailAnime }) => {
   return (
     <div className=" rounded-lg shadow bg-zinc-900"> {/**main container */}
-      <h5 className="text-lg font-bold mb-4 pb-2 text-amber-200">{title}</h5>
+      <h5 className="text-lg font-bold py-2 text-amber-200">{title}</h5>
       <div className="space-y-4">
         {data.map((anime, index) => (
           
@@ -16,7 +16,7 @@ const Lists = ({ title, data, getDetailAnime }) => {
             <img
               src={anime.poster}
               alt={anime.name}
-              className="w-16 h-24 object-cover rounded"
+              className="w-16 h-20 object-cover rounded"
             />
             <div>
              

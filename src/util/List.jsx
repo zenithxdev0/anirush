@@ -1,13 +1,13 @@
 import React from 'react'
 
-const List = ({label, data, onClick}) => {
+const List = ({label, data, onClick, gridLayout}) => {
   return (
 <div className='mb-8'>
   <h1 className='text-white text-4xl font-bold mb-6'>{label}</h1>
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+  <div className={gridLayout}>
     {data.length > 0 && data.map((anime, idx) => (
-      <a href={`/anime/${anime.id}`} key={anime.id || idx} className="" onClick={() => onClick(anime.id)}>
-        <div className="w-44 h-64 mb-3" >
+      <a href={`/anime/${anime.id}`} key={anime.id || idx} className="z-50" onClick={() => onClick(anime.id)}>
+        <div className="w-auto h-56 mb-3" >
           <img 
             src={anime.poster} 
             alt={anime.name} 
@@ -25,3 +25,5 @@ const List = ({label, data, onClick}) => {
 }
 
 export default List
+
+//grid md:grid-cols-6 grid-cols-4 gap-2

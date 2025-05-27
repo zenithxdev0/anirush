@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-const HlsPlayer = ({ src, key, tracks }) => {
+const HlsPlayer = ({ src, key, tracks, videoSize }) => {
 
   const videoRef = useRef();
 
@@ -32,7 +32,7 @@ const HlsPlayer = ({ src, key, tracks }) => {
   ref={videoRef}
   controls
   autoPlay
-  className="h-auto"
+  className={`${videoSize} aspect-video`}
   crossOrigin="anonymous"
 >
   {tracks.map((track, index) =>

@@ -5,6 +5,7 @@ import './App.css'
 import Details from './pages/Details'
 import Watch from './pages/Watch'
 import Landing from './pages/Landing'
+import Sorted from './pages/Sorted'
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path='/anime/:animeId' element={<Details />}/>
         <Route path='/watch/:episodeId' element={<Watch />}/>
+        <Route path='/anime-list/:character' element={<Sorted />} />
+
+
         <Route path="*" element={<NotFound />} />
         
       </Routes>

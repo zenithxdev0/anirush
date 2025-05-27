@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -10,26 +10,35 @@ import Loading from "../util/Loading";
 import Button from "../util/Button";
 import Container from "../util/Container";
 import List from "../util/List";
-
+import Episodes from "../util/Episodes";
+import Footer from "../components/Footer";
 
 const Details = () => {
   const { animeId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const gridLayout =
+    "grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2";
 
-  const { loading, info, moreInfo, seasons, relatedAnimes, recommendedAnimes, mostPopularAnimes } = useSelector(
-    (state) => state.detail
-  );
-  const { episodes } = useSelector((state) => state.episode);
+  const {
+    loading,
+    info,
+    moreInfo,
+    seasons,
+    relatedAnimes,
+    recommendedAnimes,
+    mostPopularAnimes,
+  } = useSelector((state) => state.detail);
+
+  const { episodes, totalEpisodes } = useSelector((state) => state.episode);
 
   const getWatch = () => {
     navigate(`/watch/${episodes[0].episodeId}`);
   };
 
   const getDetailAnime = (animeId) => {
-    navigate(`/anime/${animeId}`); 
+    navigate(`/anime/${animeId}`);
   };
-
 
   useEffect(() => {
     if (animeId) {
@@ -43,11 +52,14 @@ const Details = () => {
   }
 
   return (
-    <Container>
+    <>
+        <Container>
       <NavBar />
       {info && (
         <article className="">
           <HeroDetails info={info} moreInfo={moreInfo} getWatch={getWatch} />
+          <Episodes episodes={episodes} totalEpisodes={totalEpisodes} className={`grid grid-cols-25 text-center gap-2`}/>
+            
           {seasons.length > 0 && (
             <div>
               <h1 className="text-white text-4xl font-bold mb-6">Seasons</h1>
@@ -62,7 +74,9 @@ const Details = () => {
                     }}
                   >
                     <div className="w-full h-full bg-black/60 p-2">
-                      <small className="text-white font-semibold">{season.name}</small>
+                      <small className="text-white font-semibold">
+                        {season.name}
+                      </small>
                     </div>
                   </div>
                 ))}
@@ -70,12 +84,35 @@ const Details = () => {
             </div>
           )}
 
-          {relatedAnimes.length > 0 && <List label={'Related Anime'} data={relatedAnimes} onClick={getDetailAnime}></List>}
-          {recommendedAnimes.length > 0 && <List label={'Recommended Anime'} data={recommendedAnimes} onClick={getDetailAnime}></List>}
-          {mostPopularAnimes.length > 0 && <List label={'Most Popular Anime'} data={mostPopularAnimes} onClick={getDetailAnime}></List>}
+          {relatedAnimes.length > 0 && (
+            <List
+              label={"Related Anime"}
+              data={relatedAnimes}
+              onClick={getDetailAnime}
+              gridLayout={gridLayout}
+            />
+          )}
+          {recommendedAnimes.length > 0 && (
+            <List
+              label={"Recommended Anime"}
+              data={recommendedAnimes}
+              onClick={getDetailAnime}
+              gridLayout={gridLayout}
+            />
+          )}
+          {mostPopularAnimes.length > 0 && (
+            <List
+              label={"Most Popular Anime"}
+              data={mostPopularAnimes}
+              onClick={getDetailAnime}
+              gridLayout={gridLayout}
+            />
+          )}
         </article>
       )}
     </Container>
+    <Footer />
+    </>
   );
 };
 

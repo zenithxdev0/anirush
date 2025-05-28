@@ -63,7 +63,7 @@ const Details = () => {
           {seasons.length > 0 && (
             <div>
               <h1 className="text-white text-4xl font-bold mb-6">Seasons</h1>
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 {seasons.map((season, idx) => (
                   <div
                     className="w-48 h-28 rounded-sm relative"

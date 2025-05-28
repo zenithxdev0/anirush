@@ -1,5 +1,6 @@
 import Button from "../util/Button";
 import Stat from "../util/Stat";
+import InfoRow from "./InfoRow";
 
 
 const HeroDetails = ({ info, moreInfo, getWatch }) => {
@@ -28,12 +29,23 @@ const HeroDetails = ({ info, moreInfo, getWatch }) => {
           </div>
         </div>
       </div>
-      <div className="w-80 bg-neutral-800 p-2">Content here</div>
+<div className="w-80 bg-neutral-800 p-4 shadow-lg text-neutral-100 space-y-2">
+  <h2 className="text-xl font-semibold border-b border-neutral-700 pb-2 mb-2">Anime Details</h2>
+  <div className="space-y-1 text-sm">
+    <InfoRow label="Japanese" value={moreInfo.japanese || '?'} />
+    <InfoRow label="Synonyms" value={moreInfo.synonyms || '?'} />
+    <InfoRow label="Aired" value={moreInfo.aired} />
+    <InfoRow label="Premiered" value={moreInfo.premiered} />
+    <InfoRow label="Duration" value={moreInfo.duration} />
+    <InfoRow label="Status" value={moreInfo.status} />
+    <InfoRow label="Mal Score" value={moreInfo.malscore} />
+    { moreInfo.genres && <InfoRow label="Genres" value={moreInfo.genres.join(', ')} />}
+    <InfoRow label="Studios" value={moreInfo.studios} />
+    {moreInfo.producers && <InfoRow label="Producers" value={moreInfo.producers.join(', ')} />}
+  </div>
+</div>
     </section>
   );
 };
 
 export default HeroDetails;
-
-//<h1>{data.name}</h1>
-// <Button color={'amber'} onClick={() => getWatch(data.id)}>Watch Now</Button>

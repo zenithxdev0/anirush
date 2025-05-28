@@ -3,7 +3,7 @@ import React from 'react'
 const Button = ({color, children, onClick}) => {
 
     const colors = {
-        amber: 'text-black bg-amber-200 hover:bg-amber-400 active:bg-amber-500',
+        amber: 'text-black bg-amber-300 hover:bg-amber-400 active:bg-amber-500',
         rose: 'text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700'
     }
 

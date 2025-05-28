@@ -18,7 +18,7 @@ const Episodes = ({ episodes, totalEpisodes, className, episodeId }) => {
     <>
       {episodes.length > 0 && (
         <>
-          <div className="mb-4 bg-neutral-700 p-2 rounded-sm">
+          <div className="mb-4 bg-neutral-800 p-2 rounded-sm">
             <div className="flex items-center gap-4">
               <h1 className="text-white text-4xl font-bold mb-4">Episodes</h1>
 
@@ -29,7 +29,7 @@ const Episodes = ({ episodes, totalEpisodes, className, episodeId }) => {
                   {/* Pagination */}
                   <select
                     onChange={(e) => setCurrentPage(Number(e.target.value))}
-                    className="px-3.5 py-2 text-center font-semibold text-base rounded-sm mt-[-10px] bg-amber-200 cursor-pointer"
+                    className="px-3 py-1.5 text-center font-semibold text-sm rounded-sm mt-[-10px] bg-amber-300 cursor-pointer"
                   >
                     {[...Array(totalPage)].map((_, index) => {
                       const start = index * 100 + 1;
@@ -55,8 +55,8 @@ const Episodes = ({ episodes, totalEpisodes, className, episodeId }) => {
                 <a
                   href={`/watch/${ep.episodeId}`}
                   onClick={() => navigate(`/watch/${ep.episodeId}`)}
-                  className={` text-sm flex items-center justify-center min-w-[2rem] px-0.5 py-2  rounded-sm hover:bg-neutral-700 active:bg-neutral-600 transition duration-200 ease-in-out 
-                    ${ep.episodeId === episodeId ? 'bg-amber-200 text-black' : 'bg-neutral-800 text-white'}`}
+                  className={` text-sm flex items-center justify-center min-w-[2rem] px-0.5 py-2 font-medium rounded-sm hover:bg-amber-400 active:bg-amber-500 transition duration-200 ease-in-out 
+                    ${ep.episodeId === episodeId ? 'bg-rose-500 text-white' : 'bg-amber-300 text-black'}`}
                 >
                   {ep.number}
                 </a>

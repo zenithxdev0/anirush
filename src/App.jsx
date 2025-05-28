@@ -6,6 +6,7 @@ import Details from './pages/Details'
 import Watch from './pages/Watch'
 import Landing from './pages/Landing'
 import Sorted from './pages/Sorted'
+import Search from './pages/Search'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/anime/:animeId' element={<Details />}/>
         <Route path='/watch/:episodeId' element={<Watch />}/>
         <Route path='/anime-list/:character' element={<Sorted />} />
+        <Route path= '/search/:qp' element={<Search />} />
 
 
         <Route path="*" element={<NotFound />} />

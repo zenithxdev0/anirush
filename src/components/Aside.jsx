@@ -13,7 +13,7 @@ const Aside = ({className, top10Today, top10Week, top10Month}) => {
             <p
               onClick={() => setActiveTab("today")}
               className={` cursor-pointer ${
-                activeTab === "today" ? "font-bold text-amber-200" : "text-white"
+                activeTab === "today" ? "font-bold text-amber-300" : "text-white"
               }`}
             >
               Today
@@ -21,7 +21,7 @@ const Aside = ({className, top10Today, top10Week, top10Month}) => {
             <p
               onClick={() => setActiveTab("week")}
               className={` cursor-pointer ${
-                activeTab === "week" ? "font-bold text-amber-200" : "text-white"
+                activeTab === "week" ? "font-bold text-amber-300" : "text-white"
               }`}
             >
               Week
@@ -29,7 +29,7 @@ const Aside = ({className, top10Today, top10Week, top10Month}) => {
             <p
               onClick={() => setActiveTab("month")}
               className={` cursor-pointer ${
-                activeTab === "month" ? "font-bold text-amber-200" : "text-white"
+                activeTab === "month" ? "font-bold text-amber-300" : "text-white"
               }`}
             >
               Month

@@ -3,7 +3,7 @@ import Stat from "../util/Stat";
 import InfoRow from "./InfoRow";
 
 
-const HeroDetails = ({ info, moreInfo, getWatch }) => {
+const HeroDetails = ({ info, moreInfo, getWatch, loadingEpisode }) => {
   const data = info;
 
   return (
@@ -23,7 +23,7 @@ const HeroDetails = ({ info, moreInfo, getWatch }) => {
               <small className="text-white mx-1 opacity-70 text-base">•</small>
               <small className="font-semibold">{info.stats.duration}</small>
             </div>
-              <Button color={'amber'} onClick={() => getWatch(data.id)}>Watch Now</Button>
+              <Button disabled={loadingEpisode} color={'amber'} onClick={() => getWatch(data.id)}>Watch Now</Button>
             <p className="text-base w-[80%]">{info.description}</p>
 
           </div>

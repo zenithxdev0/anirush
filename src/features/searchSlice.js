@@ -73,7 +73,7 @@ const searchResultSlice = createSlice({
             state.error = null;
         })
         .addCase(fetchSearchResult.fulfilled, (state, action) => {
-            state.loading = true;
+            state.loading = false;
             state.error = null;
             state.animes = action.payload.animes;
             state.mostPopularAnimes = action.payload.mostPopularAnimes;

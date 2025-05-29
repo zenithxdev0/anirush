@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Episodes = ({ episodes, totalEpisodes, className, episodeId }) => {
+const Episodes = ({ episodes, totalEpisodes, className, episodeId, loading }) => {
   console.log(episodeId)
 
   const maxEpisodesPerPage = 100;
@@ -13,7 +13,15 @@ const Episodes = ({ episodes, totalEpisodes, className, episodeId }) => {
   const lastEpisodeIndex = currentPage * maxEpisodesPerPage; // 2 * 100 = 200
   const firstPostIndex = lastEpisodeIndex - maxEpisodesPerPage; //200 - 100 = 100 will be the index
   const episodeToShow = episodes.slice(firstPostIndex, lastEpisodeIndex); //100 - 199 = 100 totalIndex
-//"grid grid-cols-25 text-center gap-2"
+
+  if(loading) {
+    return (
+      <div className="mb-4 bg-neutral-800 p-2 rounded-sm flex items-center justify-center">
+        <div className="loader"></div>
+      </div>
+    )
+  }
+
   return (
     <>
       {episodes.length > 0 && (

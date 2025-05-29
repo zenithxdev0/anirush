@@ -5,37 +5,6 @@ import Logo from "../util/Logo";
 import Alphabet from "./Alphabet";
 
 const Footer = ({currentChar}) => {
-  const characters = [
-    "All",
-    // "#",
-    "0-9",
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
 
   return (
     <footer className="block w-full bg-neutral-800 py-4 bottom-0">
@@ -58,7 +27,7 @@ const Footer = ({currentChar}) => {
         <img
           src={footerpic}
           alt="vampire"
-          className="w-96 absolute bottom-[-2rem] right-0 z-0 xl:block hidden"
+          className="w-72 absolute bottom-[-2rem] right-0 z-0 xl:block hidden"
         />
       </Container>
     </footer>

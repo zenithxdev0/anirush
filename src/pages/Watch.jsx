@@ -146,18 +146,9 @@ const Watch = () => {
 
       {sourceLoading ? (
         <Loading />
-      ) : sourceError ? (
-        <p>error video</p>
       ) : (
         <>
           <div className="flex gap-2 items-start">
-            {/* <Episodes
-              episodes={episodes}
-              totalEpisodes={totalEpisodes}
-              className={
-                "max-w-72 w-full grid place-content-evenly grid-cols-6 gap-1"
-              }
-            /> */}
             <div className="">
               {/**video */}
               {source?.length > 0 && track.length > 0 ? (

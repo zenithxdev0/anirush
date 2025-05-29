@@ -34,8 +34,8 @@ const detailSlice = createSlice({
                 // console.log(state);
             })
             .addCase(fetchDetail.fulfilled, (state, action) => {
-                state.loading = false;
-                state.error = null;
+                
+                
                 state.info = action.payload.data.anime.info;
                 state.moreInfo = action.payload.data.anime.moreInfo
                 state.seasons = action.payload.data.seasons
@@ -43,6 +43,8 @@ const detailSlice = createSlice({
                 state.mostPopularAnimes = action.payload.data.mostPopularAnimes
                 state.recommendedAnimes = action.payload.data.recommendedAnimes
                 state.relatedAnimes = action.payload.data.relatedAnimes
+                state.error = null;
+                state.loading = false;
                 
                 console.log(action.payload.data)
             })

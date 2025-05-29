@@ -119,10 +119,13 @@ const sourceSlice = createSlice({
                 state.track = action.payload.tracks;
                 state.loading = false;
                 state.error = null;
+
+                console.log(action.payload);
             })
             .addCase(fetchSource.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error || 'Something went wrong. Try again later.';
+                console.log(action.error)
 
             })
     }

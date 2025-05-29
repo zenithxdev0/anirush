@@ -35,7 +35,7 @@ getVideoSources: async (episodeId, server, category) => {
     try {
         const proxy = `http://localhost:8080/`;
 
-        const organicPath = `http://localhost:4000/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}&server=${server}&category=${category}`
+        const organicPath = `${API_URL}/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}&server=${server}&category=${category}`
         const originalPath = `/api/v2/hianime/episode/sources?animeEpisodeId=${episodeId}&server=${server}&category=${category}`;
         const fullUrl = `${proxy}${originalPath}`;
 

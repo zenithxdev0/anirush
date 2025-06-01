@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { data, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import { SideBar } from "../components/SideBar";
 
 import {
   fetchEpisodes,
@@ -23,6 +23,8 @@ import List from "../util/List";
 import Footer from "../components/Footer";
 
 const Watch = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -141,98 +143,104 @@ const Watch = () => {
 
   return (
     <>
-        <Container>
-      <NavBar />
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Container>
+        <NavBar openSidebar={() => setIsOpen(true)} />
 
-      {sourceLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="flex gap-2 items-start">
-            <div className="">
-              {/**video */}
-              {source?.length > 0 && track.length > 0 ? (
-                <>
-                  <HlsPlayer
-                    src={`${streamProxy}${source[0].url}`}
-                    tracks={track}
-                    key={"1"}
-                    videoSize={`max-w-[120rem] w-full bg-neutral-700 aspect-video`}
-                  />
+        {sourceLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <div className="flex gap-2 items-start">
+              <div className="">
+                {/**video */}
+                {source?.length > 0 && track.length > 0 ? (
+                  <>
+                    <HlsPlayer
+                      src={`${streamProxy}${source[0].url}`}
+                      tracks={track}
+                      key={"1"}
+                      videoSize={`max-w-[120rem] w-full bg-neutral-700 aspect-video`}
+                    />
+                    <div className="grid sm:grid-cols-2 grid-cols-1 mb-2">
+                      <div className="space-y-2 bg-neutral-800 p-4">
+                        {serverInfo?.sub?.length > 0 && (
+                          <div className="flex items-center gap-4">
+                            <p className="text-amber-200 font-semibold">Sub</p>
+                            <ul className="flex gap-2">
+                              {serverInfo.sub.map((sub, idx) => (
+                                <li
+                                  key={idx}
+                                  onClick={() =>
+                                    handleSwitch(sub.serverName, "sub")
+                                  }
+                                  className={`p-2 font-semibold text-xs rounded-md cursor-pointer text-white ${
+                                    server === sub.serverName &&
+                                    category === "sub"
+                                      ? "bg-blue-600"
+                                      : "bg-neutral-700 hover:bg-neutral-800"
+                                  }`}
+                                >
+                                  {sub.serverName}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
 
-                  <div className="space-y-2 bg-neutral-800 p-4 mb-2">
-                    {serverInfo?.sub?.length > 0 && (
-                      <div className="flex items-center gap-4">
-                        <p className="text-amber-200 font-semibold">Sub</p>
-                        <ul className="flex gap-2">
-                          {serverInfo.sub.map((sub, idx) => (
-                            <li
-                              key={idx}
-                              onClick={() =>
-                                handleSwitch(sub.serverName, "sub")
-                              }
-                              className={`p-2 font-semibold text-xs rounded-md cursor-pointer ${
-                                server === sub.serverName && category === "sub"
-                                  ? "bg-blue-600"
-                                  : "bg-neutral-700 hover:bg-neutral-800"
-                              }`}
-                            >
-                              {sub.serverName}
-                            </li>
-                          ))}
-                        </ul>
+                        {serverInfo?.dub?.length > 0 && (
+                          <div className="flex gap-4 items-center">
+                            <p className="text-amber-200 font-semibold">Dub</p>
+                            <ul className="flex gap-2">
+                              {serverInfo.dub.map((dub, idx) => (
+                                <li
+                                  onClick={() =>
+                                    handleSwitch(dub.serverName, "dub")
+                                  }
+                                  key={idx}
+                                  className="p-2 text-xs rounded-md font-semibold bg-neutral-700 text-white"
+                                >
+                                  {dub.serverName}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
-                    )}
-
-                    {serverInfo?.dub?.length > 0 && (
-                      <div className="flex gap-4 items-center">
-                        <p className="text-amber-200 font-semibold">Dub</p>
-                        <ul className="flex gap-2">
-                          {serverInfo.dub.map((dub, idx) => (
-                            <li
-                              onClick={() =>
-                                handleSwitch(dub.serverName, "dub")
-                              }
-                              key={idx}
-                              className="p-2 text-xs rounded-md font-semibold bg-neutral-700"
-                            >
-                              {dub.serverName}
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="text-amber-300 p-4 flex grow h-full bg-neutral-600">
+                        <p>If the video is not working, try another server</p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                    <Episodes
+                      episodes={episodes}
+                      totalEpisodes={totalEpisodes}
+                      className={`flex flex-wrap gap-2 items-center`}
+                      episodeId={`${animeId}?ep=${ep}`}
+                    />
+                  </>
+                ) : (
+                  <p className="text-red-500">No stream available.</p>
+                )}
+              </div>
 
-                  <Episodes
-                    episodes={episodes}
-                    totalEpisodes={totalEpisodes}
-                    className={`grid grid-cols-25 text-center gap-2 place-items-center`}
-                    episodeId={`${animeId}?ep=${ep}`}
-                  />
-                </>
-              ) : (
-                <p className="text-red-500">No stream available.</p>
-              )}
+              <Trending
+                data={relatedAnimes.slice(0, 10)}
+                label={"Related Animes"}
+                className={
+                  "bg-neutral-800 p-2 rounded-sm max-w-80 w-full lg:block hidden"
+                }
+              />
             </div>
-
-            <Trending
-              data={relatedAnimes.slice(0, 10)}
-              label={"Related Animes"}
-              className={
-                "bg-neutral-800 p-2 rounded-sm max-w-80 w-full lg:block hidden"
-              }
+            <List
+              label={"Recommended Anime"}
+              data={recommendedAnimes}
+              gridLayout={gridLayout}
             />
-          </div>
-          <List
-            label={"Recommended Anime"}
-            data={recommendedAnimes}
-            gridLayout={gridLayout}
-          />
-        </>
-      )}
-    </Container>\
-    <Footer />
+          </>
+        )}
+      </Container>
+      \
+      <Footer />
     </>
   );
 };

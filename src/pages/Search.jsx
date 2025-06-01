@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../util/Container";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -9,9 +9,11 @@ import Loading from "../util/Loading";
 import { useParams } from "react-router-dom";
 import crying from "../assets/crying.png";
 import Trending from "../components/Trending";
-
+import { SideBar } from "../components/SideBar";
 
 const Search = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const gridLayout =
     "grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-2";
@@ -35,8 +37,9 @@ const Search = () => {
   } else {
     return (
       <>
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
         <Container>
-          <NavBar />
+          <NavBar openSidebar={() => setIsOpen(true)} />
           {animes.length > 0 ? (
             <div className="flex gap-4 items-start">
               <List

@@ -63,7 +63,7 @@ const Episodes = ({ episodes, totalEpisodes, className, episodeId, loading }) =>
                 <a
                   href={`/watch/${ep.episodeId}`}
                   onClick={() => navigate(`/watch/${ep.episodeId}`)}
-                  className={` text-sm flex items-center justify-center min-w-[2rem] px-0.5 py-2 font-medium rounded-sm hover:bg-amber-400 active:bg-amber-500 transition duration-200 ease-in-out 
+                  className={`flex-1 text-sm flex items-center justify-center min-w-[2rem] px-0.5 py-2 font-medium rounded-sm hover:bg-amber-400 active:bg-amber-500 transition duration-200 ease-in-out 
                     ${ep.episodeId === episodeId ? 'bg-rose-500 text-white' : 'bg-amber-300 text-black'}`}
                 >
                   {ep.number}

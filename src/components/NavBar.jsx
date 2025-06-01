@@ -6,8 +6,12 @@ import { fetchSearchSuggestion } from "../features/searchSlice";
 import { clearSuggestion } from "../features/searchSlice";
 import Button from "../util/Button";
 import SearchIcon from "../assets/SearchIcon";
+import BurgerIcon from "../assets/BurgerIcon";
 
-const NavBar = () => {
+
+const NavBar = ({openSidebar}) => {
+
+
   const handleLogoClick = () => {
     navigate("/home");
   };
@@ -53,10 +57,16 @@ const NavBar = () => {
   }, [query, dispatch]);
 
   return (
-    <nav className=" text-white w-full py-4 z-50">
+      <>
+          <nav className=" text-white w-full py-4 z-50 relative">
       <div className="flex sm:items-center  sm:justify-between gap-4 sm:flex-row flex-col">
         <div className="w-full flex items-center justify-between">
-          <Logo onClick={handleLogoClick} />
+          
+          <div className="flex items-center gap-2">
+            <button onClick={openSidebar} className="cursor-pointer"><BurgerIcon size={26}/></button>
+            <Logo onClick={handleLogoClick} className={'w-24'} />
+          </div>
+
           <p onClick={handleShowSearch} className="sm:hidden block">
             <SearchIcon
               className="cursor-pointer"
@@ -111,8 +121,11 @@ const NavBar = () => {
             </div>
           )}
         </div>
+        
       </div>
     </nav>
+
+    </>
   );
 };
 

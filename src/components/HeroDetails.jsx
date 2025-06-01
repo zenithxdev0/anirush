@@ -7,11 +7,11 @@ const HeroDetails = ({ info, moreInfo, getWatch, loadingEpisode }) => {
   const data = info;
 
   return (
-    <section className="text-white flex mb-6">
+    <section className="text-white flex flex-col md:flex-row mb-6">
       <div className="flex-1 bg-neutral-700">
-        <div className="flex p-2 gap-4">
+        <div className="flex p-2 gap-4 md:flex-row flex-col items-center sm:items-start">
           <img src={info.poster} alt={info.name} className="w-64 h-96 rounded-md flex-shrink-0 object-cover" />
-          <div className="block space-y-2">
+          <div className="sm:block flex flex-col items-center space-y-2">
             <h1 className="text-4xl font-bold">{info.name}</h1>
             <div className="stats flex items-center gap-2 my-4">
               <Stat type={'rating'}>{info.stats.rating}</Stat>
@@ -29,7 +29,7 @@ const HeroDetails = ({ info, moreInfo, getWatch, loadingEpisode }) => {
           </div>
         </div>
       </div>
-<div className="w-80 bg-neutral-800 p-4 shadow-lg text-neutral-100 space-y-2">
+<div className="w-full sm:w-80 bg-neutral-800 p-4 shadow-lg text-neutral-100 space-y-2">
   <h2 className="text-xl font-semibold border-b border-neutral-700 pb-2 mb-2">Anime Details</h2>
   <div className="space-y-1 text-sm">
     <InfoRow label="Japanese" value={moreInfo.japanese || '?'} />

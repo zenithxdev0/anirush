@@ -12,8 +12,11 @@ import Container from "../util/Container";
 import List from "../util/List";
 import Episodes from "../util/Episodes";
 import Footer from "../components/Footer";
+import { SideBar } from "../components/SideBar";
 
 const Details = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
   const { animeId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,15 +64,16 @@ const Details = () => {
 
   return (
     <>
+    <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
       <Container>
-        <NavBar />
+        <NavBar openSidebar={() => setIsOpen(true)} />
         {info && (
           <article className="">
             <HeroDetails info={info} moreInfo={moreInfo} getWatch={getWatch} loadingEpisode={episodeLoading}/>
             <Episodes
               episodes={episodes}
               totalEpisodes={totalEpisodes}
-              className={`grid grid-cols-25 text-center gap-2`}
+              className={`flex gap-2 flex-wrap`}
               loading={episodeLoading}
             />
 

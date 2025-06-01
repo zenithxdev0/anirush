@@ -1,9 +1,9 @@
 import React from 'react'
 import logo from '../assets/AniRUSH.png';
 
-const Logo = ({onClick}) => {
+const Logo = ({onClick, className}) => {
   return (
-    <a href='/home' onClick={onClick} className='w-24'><img src={logo} className='w-24' alt="logo" /></a>
+    <a href='/home' onClick={onClick} className={`${className}`}><img src={logo} className={`${className}`} alt="logo" /></a>
   )
 }
 

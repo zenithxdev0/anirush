@@ -9,8 +9,11 @@ import List from "../util/List";
 import Pagination from "../util/Pagination";
 import Loading from "../util/Loading";
 import Alphabet from "../components/Alphabet";
+import { SideBar } from "../components/SideBar";
 
 const Sorted = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
   const gridLayout =
     "grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2";
   const dispatch = useDispatch();
@@ -39,8 +42,9 @@ const Sorted = () => {
 
   return (
     <>
+    <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
       <Container className={"min-h-screen"}>
-        <NavBar />
+        <NavBar openSidebar={() => setIsOpen(true)} />
 
         <Alphabet className={"flex gap-2 flex-wrap"} currentChar={char} />
         {(loading && <Loading />) || (

@@ -16,10 +16,14 @@ import Container from "../util/Container";
 import List from "../util/List";
 import Aside from "../components/Aside";
 import Footer from "../components/Footer";
+import { SideBar } from "../components/SideBar";
 
 const Home = () => {
   const dispatch = useDispatch(); //dispatch execute the reducers
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const gridLayout =
     "grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-2";
 
@@ -54,10 +58,13 @@ const Home = () => {
     return <Loading />;
   }
 
+  
+
   return (
     <>
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
       <Container>
-        <NavBar />
+        <NavBar openSidebar={() => setIsOpen(true)} />
 
         <div className="flex gap-4 items-start">
           <main className="home-main-content">

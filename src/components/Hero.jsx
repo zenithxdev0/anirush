@@ -7,7 +7,6 @@ const Hero = ({ data, getDetailAnime }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % data.length);
   };

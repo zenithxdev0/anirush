@@ -12,7 +12,7 @@ const Footer = ({currentChar}) => {
         <Alphabet currentChar={currentChar} className={'flex gap-2 flex-wrap'}/>
 
         <div>
-            <Logo />
+            <Logo className={'w-24'} />
           <p className="text-white font-medium">
             <small>Copyright © AniRush. All Rights Reserved</small>
           </p>

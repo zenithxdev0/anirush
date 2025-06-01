@@ -5,6 +5,7 @@ import sadanime from '../assets/sadanime.png';
 import Button from "../util/Button";
 import { useNavigate } from "react-router-dom";
 import { SideBar } from "../components/SideBar";
+import { useState } from "react";
 
 const NotFound = () => {
   const [isOpen, setIsOpen] = useState(false);

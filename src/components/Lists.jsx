@@ -19,7 +19,6 @@ const Lists = ({ title, data, getDetailAnime }) => {
               className="w-16 h-20 object-cover rounded"
             />
             <div>
-             
               <p className="text-sm font-medium text-white">{anime.name}</p>
               {anime.episodes.sub && <Stat type={'sub'}>{anime.episodes.sub}</Stat>}
               <span> </span>

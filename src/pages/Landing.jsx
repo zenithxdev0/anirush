@@ -22,7 +22,7 @@ const Landing = () => {
             <div className="flex flex-col items-center mt-28 gap-2 px-4">
               <Logo className={"w-48"} />
               <Search />
-              <small className="text-amber-300 font-medium">
+              <small className="text-amber-300 font-medium text-center">
                 anirush.vercel.app - Just a better place to watch anime online
                 for free!
               </small>

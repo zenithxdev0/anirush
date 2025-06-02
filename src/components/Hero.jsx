@@ -44,8 +44,8 @@ const Hero = ({ data, getDetailAnime }) => {
           <div className="z-10 space-y-4">
 
             <p className="text-amber-200">#{anime.rank} Spotlight</p>
-            <h1 className="font-black text-white text-5xl w-[70%]">{anime.name}</h1>
-            <p className="line-clamp-3 text-ellipsis w-[70%] text-white">{anime.description}</p>  
+            <h1 className="font-black text-white text-2xl sm:text-4xl w-[70%] sm:line-clamp-none line-clamp-5">{anime.name}</h1>
+            <p className="line-clamp-3 text-ellipsis w-full sm:w-[70%] text-white">{anime.description}</p>  
             <div className="space-x-4">
               <Button color={'amber'} onClick={() => getDetailAnime(anime.id)}>Watch Now</Button>
               <Button color={'rose'} onClick={() => getDetailAnime(anime.id)}>Details</Button>

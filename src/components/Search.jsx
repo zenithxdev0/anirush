@@ -48,7 +48,7 @@ const Search = ({ className }) => {
 
   return (
     <>
-      <form onSubmit={handleSearch} className="flex gap-2 relative">
+      <form onSubmit={handleSearch} className=" gap-2 relative">
         <div>
           <input
             onChange={(e) => setQuery(e.target.value)}

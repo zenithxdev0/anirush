@@ -12,18 +12,28 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       location: 'home'
     },
     {
+        label: 'Movies',
+        location: 'category/movie'
+    },
+    {
+        label: 'TV Shows',
+        location: 'category/tv'
+    },
+    {
       label: 'Subbed',
-      location: 'subbed'
+      location: 'category/subbed-anime'
     },
     {
       label: 'Dubbed',
-      location: 'dubbed'
+      location: 'category/dubbed-anime'
     },
-    {
-        label: 'Movies',
-        location: 'movies'
-    }
   ]
+
+    const handleNavigate = (item) => {
+      navigate(`/${item.location}`);
+      setIsOpen(false);
+    }
+
 
   return (
     <div
@@ -41,9 +51,9 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
         <header className="text-white mb-4">
           <button className="bg-neutral-600 py-3 px-5 rounded-full cursor-pointer transition duration-200 hover:bg-neutral-500 active:bg-neutral-300" onClick={() => setIsOpen(false)}>Close menu</button>
         </header>
-        <ul className="text-white">
+        <ul className="text-white flex flex-col">
           {menuList.map((item, idx) => (
-            <li onClick={() => navigate(`/${item.location}`)} className="py-4 w-full border-b-neutral-400/50 border-b-2 hover:text-amber-300 cursor-pointer font-medium">
+            <li onClick={() => handleNavigate(item)} className="py-4 w-full border-b-neutral-400/50 border-b-2 hover:text-amber-300 cursor-pointer font-medium">
               {item.label}
             </li>
           ))}

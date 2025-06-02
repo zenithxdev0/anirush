@@ -7,7 +7,7 @@ import { serverReducer, sourceReducer }  from '../features/watchSlice';
 import aZReducer from '../features/sortSlice';
 import suggestionReducer from '../features/searchSlice';
 import { searchResultReducer  } from '../features/searchSlice';
-
+import categoryReducer from '../features/categorySlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +18,7 @@ export const store = configureStore({
     source: sourceReducer,
     aZList: aZReducer,
     suggestion: suggestionReducer,
-    search: searchResultReducer
+    search: searchResultReducer,
+    category: categoryReducer
   },
 });

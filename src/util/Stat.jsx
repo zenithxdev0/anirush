@@ -12,7 +12,7 @@ const Stat = ({type, children, onClick}) => {
             color: 'bg-amber-300'
         },
         sub: {
-            icon: '📝',
+            icon: 'cc',
             color: 'bg-green-200'
         },
         dub: {

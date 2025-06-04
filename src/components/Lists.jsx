@@ -30,7 +30,7 @@ const Lists = ({ title, data, getDetailAnime }) => {
 
         ))}
       </div>
-      <button className="text-white hover:text-amber-200 duration-300 transition ease-in-out cursor-pointer">View more</button>
+      {/* <button className="text-white hover:text-amber-200 duration-300 transition ease-in-out cursor-pointer">View more</button> */}
     </div>
   );
 };

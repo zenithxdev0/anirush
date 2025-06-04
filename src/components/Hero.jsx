@@ -48,7 +48,7 @@ const Hero = ({ data, getDetailAnime }) => {
             <p className="line-clamp-3 text-ellipsis w-full sm:w-[70%] text-white">{anime.description}</p>  
             <div className="space-x-4">
               <Button color={'amber'} onClick={() => getDetailAnime(anime.id)}>Watch Now</Button>
-              <Button color={'rose'} onClick={() => getDetailAnime(anime.id)}>Details</Button>
+              {/* <Button color={'rose'} onClick={() => getDetailAnime(anime.id)}>Details</Button> */}
             </div>
           </div>
         </div>

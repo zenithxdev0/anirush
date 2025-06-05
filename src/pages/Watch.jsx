@@ -28,6 +28,7 @@ const Watch = () => {
   const [isDelayed, setIsDelayed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [page, setPage]= useState(null);
 
   const streamProxy =
     "https://gogoanime-and-hianime-proxy-puce-seven.vercel.app/m3u8-proxy?url="; //https://eb.netmagcdn.com:2228/hls-playback/61104e0fbf60f7c0bec92309d55517cdaacaf8be60878a81e5d07e832c765f456d52b7c134bdf4481a54d2e77642d2da3c6d95300f1d03a920d6619897aa06fb1043eab001276ebfcabda3b563f913afe8224641b4605575ddcbc91c0f1da77495bc254d94bd846ae69e1aed5a2383edd74da19492310fab7dc318a5a927a45f84baf9df9aa883db08e498a3bbfcd248/master.m3u8
@@ -78,6 +79,7 @@ const Watch = () => {
     (state) => state.episode
   );
 
+
   // useEffects
   useEffect(() => {
     if (episodeId) {
@@ -92,8 +94,13 @@ const Watch = () => {
     }
   }, [ep]);
 
+  
   useEffect(() => {
     if (!serverInfo) return;
+    console.log(serverInfo)
+
+        const currentPage = serverInfo.episodeNo / 100;
+        setPage(Math.ceil(currentPage))
 
     const hasSub = Array.isArray(serverInfo.sub) && serverInfo.sub.length > 0;
     const hasDub = Array.isArray(serverInfo.dub) && serverInfo.dub.length > 0;
@@ -113,6 +120,8 @@ const Watch = () => {
     }
   }, [serverInfo]);
 
+
+
   useEffect(() => {
     if (!server || !category) return;
     const epsId = `${animeId}?ep=${ep}`;
@@ -127,6 +136,9 @@ const Watch = () => {
 
     dispatch(fetchDetail(animeId));
   }, [animeId, ep, server, category]);
+
+
+
 
   if (loading) {
     return <Loading />;
@@ -217,6 +229,7 @@ const Watch = () => {
                       totalEpisodes={totalEpisodes}
                       className={`flex flex-wrap gap-2 items-center`}
                       episodeId={`${animeId}?ep=${ep}`}
+                      page={page}
                     />
                   </>
                 ) : (

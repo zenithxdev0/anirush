@@ -46,7 +46,7 @@ const Aside = ({className, top10Today, top10Week, top10Month}) => {
             ? top10Month
             : []
           ).map((anime, index) => (
-            <div key={index} className="flex gap-2">
+            <a key={index} className="flex gap-2" href={`/anime/${anime.id}`}>
               <img
                 src={anime.poster}
                 className="w-12 h-16 object-cover rounded"
@@ -58,7 +58,7 @@ const Aside = ({className, top10Today, top10Week, top10Month}) => {
                   {anime.rank}
                 </h5>
               </div>
-            </div>
+            </a>
           ))}
         </div>
     </div>

@@ -35,7 +35,6 @@ const episodeSlice = createSlice({
         
                 state.episodes = action.payload.episodes;
                 state.totalEpisodes = action.payload.totalEpisodes;
-                console.log(action.payload.episodes);
 
             })
             .addCase(fetchEpisodes.rejected, (state, action) => {
@@ -74,8 +73,6 @@ const serverSlice = createSlice({
             .addCase(fetchServer.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-
-                // console.log(action.payload);
                 state.serverInfo = action.payload;
             })
             .addCase(fetchServer.rejected, (state, action) => {
@@ -119,8 +116,6 @@ const sourceSlice = createSlice({
                 state.track = action.payload.tracks;
                 state.loading = false;
                 state.error = null;
-
-                console.log(action.payload);
             })
             .addCase(fetchSource.rejected, (state, action) => {
                 state.loading = false;

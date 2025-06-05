@@ -82,21 +82,21 @@ const Details = () => {
                 <h1 className="text-white text-4xl font-bold mb-6">Seasons</h1>
                 <div className="flex gap-2 flex-wrap">
                   {seasons.map((season, idx) => (
-                    <div
+                    <a href={`/anime/${season.id}`}
                       key={idx}
-                      className="w-48 h-28 rounded-sm relative"
+                      className="w-48 h-28 rounded-sm relative shadow-sm hover:scale-105 transition duration-200"
                       style={{
                         backgroundImage: `url('${season.poster}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
                     >
-                      <div className="w-full h-full bg-black/60 p-2">
+                      <div className="w-full h-full bg-black/50 p-2">
                         <small className="text-white font-semibold">
                           {season.name}
                         </small>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>

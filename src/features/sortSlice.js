@@ -41,7 +41,7 @@ const AzSlice = createSlice({
                 state.totalPages = action.payload.totalPages
                 state.currentPage = action.payload.currentPage;
                 state.hasNextPage = action.payload.hasNextPage;
-                console.log(action);
+                // console.log(action);
             })
             .addCase(fetchAzList.rejected, (state, action) => {
                 state.error = action.error || 'Something went wrong. Try again later.';

@@ -46,7 +46,7 @@ const detailSlice = createSlice({
                 state.error = null;
                 state.loading = false;
                 
-                console.log(action.payload.data)
+                // console.log(action.payload.data)
             })
             .addCase(fetchDetail.rejected, (state, action) => {
                 state.loading = false;

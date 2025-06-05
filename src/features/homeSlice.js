@@ -58,7 +58,7 @@ const homeSlice = createSlice({
       .addCase(fetchHome.pending, (state, action) => {
         state.loading = true;
         state.error = null;
-        console.log(state);
+        // console.log(state);
       })
       
       .addCase(fetchHome.fulfilled, (state, action) => { //get the data from payload
@@ -85,7 +85,7 @@ const homeSlice = createSlice({
       .addCase(fetchHome.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error || 'Something went wrong';
-        console.log(state.error);
+        // console.log(state.error);
       })
   },
   

@@ -34,7 +34,7 @@ const suggestionSlice = createSlice({
                 state.loading = false;
                 state.error = null;
 
-                console.log(action.payload);
+                // console.log(action.payload);
             })
             .addCase(fetchSearchSuggestion.rejected, (state, action) => {
                 state.loading = false;
@@ -81,7 +81,7 @@ const searchResultSlice = createSlice({
             state.totalPages = action.payload.totalPages;
             state.hasNextPage = action.payload.hasNextPage;
 
-            console.log(action.payload);
+            // console.log(action.payload);
             
         })
         .addCase(fetchSearchResult.rejected, (state, action) => {

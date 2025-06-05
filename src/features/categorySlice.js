@@ -39,7 +39,6 @@ const categorySclice = createSlice({
                 state.error = null;
                 state.loading = false;
 
-                console.log(action.payload);
             })
             .addCase(fetchCategory.rejected, (state, action) => {
                 state.error = action.error || 'Something went wrong'

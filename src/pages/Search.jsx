@@ -25,8 +25,8 @@ const Search = () => {
   const { qp } = useParams();
   const page = new URLSearchParams(location.search).get("page") || 1; //default page
 
-  console.log(qp);
-  console.log(page);
+  // console.log(qp);
+  // console.log(page);
 
   useEffect(() => {
     dispatch(fetchSearchResult({ query: qp, page: page }));

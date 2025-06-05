@@ -76,7 +76,7 @@ const serverSlice = createSlice({
                 state.serverInfo = action.payload;
             })
             .addCase(fetchServer.rejected, (state, action) => {
-                console.log(action.error);
+                // console.log(action.error);
                 state.loading = false;
                 state.error = action.error || 'Something went wrong. Try again later'
             });
@@ -120,7 +120,7 @@ const sourceSlice = createSlice({
             .addCase(fetchSource.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error || 'Something went wrong. Try again later.';
-                console.log(action.error)
+                // console.log(action.error)
 
             })
     }

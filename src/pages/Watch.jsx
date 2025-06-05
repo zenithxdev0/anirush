@@ -97,7 +97,7 @@ const Watch = () => {
   
   useEffect(() => {
     if (!serverInfo) return;
-    console.log(serverInfo)
+    // console.log(serverInfo)
 
         const currentPage = serverInfo.episodeNo / 100;
         setPage(Math.ceil(currentPage))

@@ -32,9 +32,9 @@ const Sorted = () => {
     hasNextPage,
   } = useSelector((state) => state.aZList);
 
-  console.log(character)
-  console.log(char);
-  console.log(page);
+  // console.log(character)
+  // console.log(char);
+  // console.log(page);
 
   useEffect(() => {
     dispatch(fetchAzList({ option: char, page: page }));

@@ -25,6 +25,7 @@ import Footer from "../components/Footer";
 const Watch = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isDelayed, setIsDelayed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -139,8 +140,6 @@ const Watch = () => {
     return <div>No episodes found.</div>;
   }
 
-  // const sampleUrl = `https://ed.netmagcdn.com:2228/hls-playback/d8e56d406f04d29b74b4e03042fca324d71f0cd196c65f1fcb9c6d27377df7bd17b6ce13536ee8f21bbfe92902b58f635418d122f1cafb9ae0c0d764487716f0e63a4bd7408c5ea4514f3241450918d5ff9be6b1199f09edad870678e418383b633285ce874d6dea8012a9fba9e9ac39cf3e46b931039fc69fa7dcea183ddbb51d809dd3df1ea6613cc3b93a9e9fd164/master.m3u8`;
-
   return (
     <>
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -152,7 +151,7 @@ const Watch = () => {
         ) : (
           <>
             <div className="flex gap-2 items-start">
-              <div className="">
+              <div className="max-w-[120rem] w-full ">
                 {/**video */}
                 {source?.length > 0 && track.length > 0 ? (
                   <>
@@ -198,7 +197,9 @@ const Watch = () => {
                                     handleSwitch(dub.serverName, "dub")
                                   }
                                   key={idx}
-                                  className="p-2 text-xs rounded-md font-semibold bg-neutral-700 text-white"
+                                  className={`p-2 text-xs rounded-md font-semibold  text-white cursor-pointer ${
+                                    server === dub.serverName && category === "dub" ? "bg-blue-600" :  "bg-neutral-700 hover:bg-neutral-800"
+                                  }`}
                                 >
                                   {dub.serverName}
                                 </li>
@@ -219,7 +220,11 @@ const Watch = () => {
                     />
                   </>
                 ) : (
-                  <p className="text-red-500">No stream available.</p>
+                  <>
+                    <div className="grow">
+                      <Loading />
+                    </div>
+                  </>
                 )}
               </div>
 

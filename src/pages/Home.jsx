@@ -22,6 +22,8 @@ const Home = () => {
   const dispatch = useDispatch(); //dispatch execute the reducers
   const navigate = useNavigate();
 
+  const [isDelayed, setIsDelayed] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const gridLayout =
@@ -52,13 +54,18 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchHome());
-  }, []);
 
-  if (isLoading) {
+    const timer = setTimeout(() => {
+      setIsDelayed(true);
+    }, 500); //1 second delay
+
+    return () => clearTimeout(timer);
+
+  }, [dispatch]);
+
+  if(!isDelayed || isLoading) {
     return <Loading />;
   }
-
-  
 
   return (
     <>

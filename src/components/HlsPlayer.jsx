@@ -35,16 +35,14 @@ const HlsPlayer = ({ src, key, tracks, videoSize }) => {
   className={`${videoSize} aspect-video`}
   crossOrigin="anonymous"
 >
-  {tracks.map((track, index) =>
-    track.kind === 'captions' ? (
+  {tracks.length > 0 && tracks.map((track, index) =>
       <track
         key={index}
-        label={track.label}
+        label={track.lang}
         kind={track.kind}
-        src={track.file}
+        src={track.url}
         default={track.default || false}
       />
-    ) : null
   )}
 </video>
   );
